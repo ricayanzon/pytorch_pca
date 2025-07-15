@@ -4,7 +4,7 @@ import torch
 
 from .methods import bpca, nipals, nlpca, ppca, rnipals, rpca, svd, svd_impute
 from .pca_result import PCAResult
-from .utils import _check_data
+from .utils import _check_data, normalize_data
 
 type AllowedMethod = Literal[
     "svd",
@@ -66,6 +66,8 @@ def pca(
             f"Available methods: {list(methods.keys())}"
         )
 
-    return methods[method](
-        data, n_components=n_components, center=center, scale=scale, **kwargs
-    )
+    n_components = min(n_components, min(data.shape))
+    if center or scale:
+        data = normalize_data(data, center=center, scale=scale)
+
+    return methods[method](data, n_components=n_components, **kwargs)

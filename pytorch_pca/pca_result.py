@@ -1,8 +1,9 @@
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 
 import torch
 
-from .nl_pca_net import NLPCANet
+if TYPE_CHECKING:
+    from .methods.nlpca.nlpca_net import NLPCANet
 
 
 class PCAResult:
@@ -25,7 +26,7 @@ class PCAResult:
         components: torch.Tensor,
         eigenvalues: torch.Tensor,
         method: str,
-        net: Optional[NLPCANet] = None,
+        net: Optional["NLPCANet"] = None,
     ):
         self.transformed_data = transformed_data
         self.components = components
@@ -34,6 +35,9 @@ class PCAResult:
             eigenvalues / eigenvalues.sum()
             if eigenvalues.numel() > 0
             else torch.empty(0)
+        )
+        self.cum_explained_variance_ratio = torch.cumsum(
+            self.explained_variance_ratio, dim=0
         )
         self.method = method
         self.net = net
@@ -47,6 +51,16 @@ class PCAResult:
     def loadings(self):
         """Components transposed (pcaMethods naming)."""
         return self.components.T
+
+    @property
+    def r2(self):
+        """R-squared values for each component (pcaMethods naming)."""
+        return self.explained_variance_ratio
+
+    @property
+    def r2cum(self):
+        """Cumulative explained variance ratio (pcaMethods naming)."""
+        return self.cum_explained_variance_ratio
 
     def reconstruct(
         self,
