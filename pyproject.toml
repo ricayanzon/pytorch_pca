@@ -1,0 +1,104 @@
+[build-system]
+requires = ["setuptools>=80.9.0", "setuptools_scm>=8.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pytorch_pca"
+authors = [
+    { name = "Ricardo Yanzon", email = "ricayanzon@gmail.com" }
+]
+description = """Comprehensive PyTorch implementation of PCA."""
+requires-python = ">=3.11"
+keywords = [
+    "PCA",
+    "principal component analysis",
+    "pytorch",
+    "torch",
+    "svd pca",
+    "SVD",
+    "Singular Value Decomposition",
+    "NIPALS",
+    "Nonlinear Iterative Partial Least Squares",
+    "Non-linear Iterative Partial Least Squares",
+    "RNIPALS",
+    "robust NIPALS",
+    "bpca",
+    "Bayesian PCA",
+    "ppca",
+    "Probabilistic PCA",
+    "SVD Impute",
+    "Iterative PCA",
+    "Robust PCA",
+    "Nonlinear PCA",
+    "Non-linear PCA"
+]
+license = "MIT"
+license-files = ['LICEN[CS]E*', 'COPYING*', 'NOTICE*', 'AUTHORS*']
+readme = "README.md"
+classifiers = ["Programming Language :: Python :: 3"]
+dynamic = ["dependencies", "version"]
+
+[project.urls]
+GitHub = "https://github.com/ricayanzon/pytorch_pca"
+Issues = "https://github.com/ricayanzon/pytorch_pca/issues"
+
+[tool.setuptools_scm]
+version_file = "pytorch_pca/_version.py"
+
+[tool.setuptools.dynamic]
+dependencies = { file = ["requirements.txt"] }
+
+[tool.black]
+line-length = 79
+target-version = ["py311", "py312", "py313"]
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.venv
+    | __pycache__
+    | build
+    | dist
+    | venv
+    | env
+)/
+'''
+
+[tool.isort]
+profile = "black"
+known_first_party = ["R"]
+line_length = 79
+skip = [
+    ".venv",
+    "__pycache__",
+    "build",
+    "dist",
+    "venv",
+    "env",
+]
+
+[tool.flake8]
+max-line-length = 79
+extend-ignore = 'E203'
+
+[tool.mypy]
+check_untyped_defs = true
+disallow_any_unimported = true
+disallow_incomplete_defs = true
+disallow_untyped_calls = true
+disallow_untyped_decorators = true
+disallow_untyped_defs = true
+files = '*.py'
+show_error_codes = true
+no_implicit_optional = true
+no_implicit_reexport = true
+pretty = true
+show_column_numbers = true
+show_error_context = true
+strict_concatenate = true
+strict_equality = true
+warn_no_return = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+warn_unused_configs = true
+warn_unused_ignores = true
