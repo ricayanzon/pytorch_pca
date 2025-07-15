@@ -10,15 +10,6 @@ This package provides a unified interface to eight PCA algorithms, all accessibl
 ![PythonVersion](https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13-informational)
 ![PytorchVersion](https://img.shields.io/badge/pytorch-2.7.1-blue)
 
-[![Black_logo](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-
-[![Flake8](https://github.com/ricayanzon/pytorch_pca/actions/workflows/flake.yaml/badge.svg)](https://github.com/ricayanzon/pytorch_pca/actions/workflows/flake.yaml)
-[![MyPy](https://github.com/ricayanzon/pytorch_pca/actions/workflows/mypy.yaml/badge.svg)](https://github.com/ricayanzon/pytorch_pca/actions/workflows/mypy.yaml)
-[![PyLint](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/ricayanzon/8fb4f3f78584e085dd7b0cca7e046d1f/raw/pytorch_pca_pylint.json)](https://github.com/ricayanzon/pytorch_pca/actions/workflows/pylint.yaml)
-
-[![Tests](https://github.com/ricayanzon/pytorch_pca/actions/workflows/tests.yaml/badge.svg)](https://github.com/ricayanzon/pytorch_pca/actions/workflows/tests.yaml)
-[![Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/ricayanzon/c5a6b5731db93da673f8e258b2669080/raw/pytorch_pca_tests.json)](https://github.com/ricayanzon/pytorch_pca/actions/workflows/tests.yaml)
-
 ## Installation
 
 ```bash
