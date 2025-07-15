@@ -3,7 +3,7 @@ requires = ["setuptools>=80.9.0", "setuptools_scm>=8.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "pytorch_pca"
+name = "torch-pca"
 authors = [
     { name = "Ricardo Yanzon", email = "ricayanzon@gmail.com" }
 ]
@@ -43,7 +43,7 @@ GitHub = "https://github.com/ricayanzon/pytorch_pca"
 Issues = "https://github.com/ricayanzon/pytorch_pca/issues"
 
 [tool.setuptools_scm]
-version_file = "pytorch_pca/_version.py"
+version_file = "torch_pca/_version.py"
 
 [tool.setuptools.dynamic]
 dependencies = { file = ["requirements.txt"] }

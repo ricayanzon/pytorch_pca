@@ -2,7 +2,7 @@ import pytest
 import torch
 from sklearn.decomposition import PCA
 
-from pytorch_pca import AllowedMethod, PCAResult, pca
+from torch_pca import AllowedMethod, PCAResult, pca
 
 
 def generate_test_data(
