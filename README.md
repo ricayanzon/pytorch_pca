@@ -22,7 +22,7 @@ This package provides a unified interface to eight PCA algorithms, all accessibl
 ## Installation
 
 ```bash
-pip install torch_pca
+pip install pytorch_pca
 ```
 
 ## Features
@@ -42,7 +42,7 @@ This package provides 8 different PCA algorithms optimized for various scenarios
 
 ```python
 import torch
-from torch_pca import pca
+from pytorch_pca import pca
 
 # Generate sample data
 X = torch.randn(100, 20)
