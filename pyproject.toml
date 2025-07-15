@@ -42,7 +42,10 @@ dynamic = ["dependencies", "version"]
 GitHub = "https://github.com/ricayanzon/pytorch_pca"
 Issues = "https://github.com/ricayanzon/pytorch_pca/issues"
 
+
 [tool.setuptools_scm]
+version_scheme = "guess-next-dev"
+local_scheme = "no-local-version"
 version_file = "pytorch_pca/_version.py"
 
 [tool.setuptools.dynamic]
