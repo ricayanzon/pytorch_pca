@@ -2,6 +2,10 @@
 
 A comprehensive PCA implementation using PyTorch, inspired by the R package [pcaMethods](https://github.com/bioc/pcaMethods).
 
+## Overview
+
+This package provides a unified interface to eight PCA algorithms, all accessible via the `pca` function. The main entry point is `pytorch_pca.pca`, and the package exposes `pca`, `PCAResult`, and `AllowedMethod` in its public API.
+
 [![Release](https://img.shields.io/github/v/tag/ricayanzon/pytorch_pca?label=Pypi&logo=pypi&logoColor=yellow)](https://pypi.org/project/pytorch_pca/)
 ![PythonVersion](https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13-informational)
 ![PytorchVersion](https://img.shields.io/badge/pytorch-2.7.1-blue)
@@ -72,26 +76,6 @@ result = pca(X, method="nlpca", n_components=3)
 X_reconstructed = result.reconstruct(n_components=3)
 ```
 
-## Dependencies
-
-- **torch**: The only required dependency (>= 2.7.1)
-- **scikit-learn**: Optional, only needed for comparison in tests
-
-## Development Dependencies
-
-- **black**: Code formatting
-- **flake8**: Code linting
-- **mypy**: Type checking
-- **setuptools**: Package building
-- **setuptools-scm**: Version management
-
-## Testing
-
-```bash
-# Run all tests
-python test_all.py
-```
-
 ## API Reference
 
 ### Unified Interface
@@ -99,31 +83,6 @@ python test_all.py
 ```python
 result = pca(data, method="svd", n_components=2, center=True, scale=False, **kwargs)
 ```
-
-### Individual Methods
-
-All methods follow a consistent interface:
-
-```python
-result = method_name(data, n_components, center=True, scale=False, **kwargs)
-```
-
-**Parameters:**
-- `data`: Input tensor of shape `(n_samples, n_features)`
-- `n_components`: Number of principal components to extract
-- `center`: Whether to center the data (default: `True`)
-- `scale`: Whether to scale to unit variance (default: `False`)
-- `**kwargs`: Method-specific parameters
-
-**Returns:**
-- `PCAResult` object with the following attributes:
-  - `transformed_data`: Data projected onto principal components `(n_samples, n_components)`
-  - `components`: Principal components (eigenvectors) `(n_components, n_features)`
-  - `eigenvalues`: Eigenvalues of the covariance matrix
-  - `explained_variance_ratio`: Proportion of variance explained by each component
-  - `method`: Name of the method used
-  - `scores`: Alias for `transformed_data` (pcaMethods compatibility)
-  - `loadings`: Transposed components (pcaMethods compatibility)
 
 ### Method-Specific Parameters
 
@@ -149,6 +108,19 @@ rpca(data, max_iter=100, tol=1e-6, ...)
 nlpca(data, hidden_dims=[10, 5], max_iter=1000, lr=0.01, ...)
 ```
 
+### Result Object
+
+The `PCAResult` object provides:
+
+- `transformed_data`: Data projected onto principal components `(n_samples, n_components)`
+- `components`: Principal components (eigenvectors) `(n_components, n_features)`
+- `eigenvalues`: Eigenvalues of the covariance matrix
+- `explained_variance_ratio`: Proportion of variance explained by each component
+- `method`: Name of the method used
+- `scores`: Alias for `transformed_data` (pcaMethods compatibility)
+- `loadings`: Transposed components (pcaMethods compatibility)
+- `reconstruct(n_components=None)`: Reconstruct data using selected components
+
 ## Method Selection Guide
 
 - **Complete data, speed priority**: `svd`
@@ -157,6 +129,29 @@ nlpca(data, hidden_dims=[10, 5], max_iter=1000, lr=0.01, ...)
 - **Uncertainty quantification**: `bpca`
 - **Probabilistic modeling**: `ppca`
 - **Non-linear relationships**: `nlpca`
+
+## Dependencies
+
+- **torch**: The only required dependency (>= 2.7.1)
+
+## Development & Testing
+
+- **black**: Code formatting
+- **flake8**: Code linting
+- **mypy**: Type checking
+- **pytest**: Test runner
+- **scikit-learn**: For test comparisons
+- **setuptools**, **setuptools-scm**: Packaging
+
+Comprehensive tests are provided in the `tests/` directory, covering all algorithms, edge cases, and robust/non-linear PCA scenarios.
+
+## Testing
+
+```bash
+# Run all tests from root
+pytest ./tests
+```
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
